@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="./css/normalize.css"/>
+  <link rel="stylesheet" href="./css/pikaddress.css"/>
+  <script src="./js/vendor/jquery.js"></script>
+  <script src="./js/vendor/pikaddress.js"></script>
+  <style>
+
+    #input {
+      position: absolute;
+      left: 400px;
+      top: 100px;
+    }
+  </style>
+</head>
+<body>
+  <input type="text" id="input"/>
+  <script>
+      $(function(){
+        // get districs data
+        $.ajax('data/distric.json')
+          .done(function(data){
+            var districs = data;
+
+            console.log(districs)
+            pikaddress = new Pikaddress({
+              field : document.getElementById('input'),
+              districtsData : districs,
+              districtsOften: ["北京-北京","江苏-南京","天津-天津","江苏-常州"],
+              onSelectDone:function() {
+                $('#input').val(pikaddress._o.district);
+                pikaddress.hide();
+              }
+            });
+          });
+      });
+  </script>
+</body>
+</html>
