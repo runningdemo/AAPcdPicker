@@ -265,12 +265,10 @@
             if (pEl === opts.field) {
                 return;
             }
-
             self.hide();
         }
 
         self._onFieldClick = function (e) {
-            e.stopPropagation();
             self.show();
         }
 
