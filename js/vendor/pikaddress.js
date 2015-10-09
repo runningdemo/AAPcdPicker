@@ -1,7 +1,19 @@
 /**
  * Created by chenliang on 7/7/15.
  */
-(function () {
+(function(root, factory) {
+    if (typeof exports === 'object') {
+        module.exports = factory();
+    } else if (typeof define === 'function' && define.amd) {
+        // AMD. Register as an anonymous module.
+        define(function ()
+        {
+            return factory();
+        });
+    } else {
+        root.Pikaddress = factory();
+    }
+}(this, function () {
     // some constant
     var kTABS = 'pikaddress-tabs',
         kTAB = 'pikaddress-tab',
@@ -382,6 +394,6 @@
         },
     }
     return Pikaddress;
-})();
+}))
 
 
