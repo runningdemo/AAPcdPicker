@@ -269,6 +269,10 @@
         }
 
         self._onFieldClick = function (e) {
+            e.stopPropagation();
+            if(self._o.onFieldFocus) {
+                self._o.onFieldFocus();
+            }
             self.show();
         }
 
