@@ -100,8 +100,6 @@
 		var districtArray = data.districtsOften;
 		for (var i = 0; i < districtArray.length; i++) {
 			var district = districtArray[i];
-			console.log('selected district', data.district);
-			console.log('district', district);
 			var $districtEle = $('<span/>', {
 				class: kDOMADDRESS + (isDistrictContained( district , selectedDistrict) ? ' ' + kDOMADDRESS__SELECTED : ''),
 				'data-district': district,
@@ -125,7 +123,7 @@
 			var district = districts[i];
 			var provinceName = district['name'];
 			var $districtEle = $('<span/>', {
-				class: kDOMADDRESS + (selectedDistrict && provinceName == getProvinceName(selectedDistrict) ? ' ' + kDOMADDRESS__SELECTED : ''),
+				class: kDOMADDRESS + (isDistrictContained(provinceName, selectedDistrict)? ' ' + kDOMADDRESS__SELECTED : ''),
 				'data-district': provinceName, // eg: '江苏省'
 				html: provinceName
 			});
@@ -141,18 +139,16 @@
 			backgroundColor: 'blue'
 		})
 		var provinceName = getProvinceName(data.district),
-			selectedCityName = getCityName(data.district),
 			citysInProvince = getCitiesOfProvince(provinceName, data.districtsData);
 
 		for (var i = 0; i < citysInProvince.length; i++) {
 			var cityName = citysInProvince[i]['name'];
 			var $cityEle = $('<span/>', {
-				class: kDOMADDRESS + (selectedCityName && selectedCityName == cityName ? ' ' + kDOMADDRESS__SELECTED : ''),
+				class: kDOMADDRESS + (isDistrictContained(cityName, data.district)? ' ' + kDOMADDRESS__SELECTED : ''),
 				'data-district': provinceName + '-' + cityName,
 				html: cityName
 			});
 			$eleCity.append($cityEle);
-
 		}
 		return $eleCity;
 
@@ -166,13 +162,12 @@
 
 		var provinceName = getProvinceName(data.district),
 			cityName = getCityName(data.district),
-			selectedContryName = getCountryName(data.district),
 			countriesInCity = getCountriesOfCity(provinceName, cityName, data.districtsData);
 
 		for (var i = 0; i < countriesInCity.length; i++) {
 			var countryName = countriesInCity[i];
 			var $countryEle = $('<span/>', {
-				class: kDOMADDRESS + (selectedContryName && selectedContryName == countryName ? ' ' + kDOMADDRESS__SELECTED : ''),
+				class: kDOMADDRESS + (isDistrictContained(countryName , data.district) ? ' ' + kDOMADDRESS__SELECTED : ''),
 				'data-district': provinceName + '-' + cityName + '-' + countryName,
 				html: countryName
 			});
