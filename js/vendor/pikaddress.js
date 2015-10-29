@@ -222,6 +222,9 @@
 		}
 	}
 
+	/*
+	 * Pikaddress constructor
+	 */
 	Pikaddress = function (options) {
 		var self = this,
 			opts = this.config(options);
