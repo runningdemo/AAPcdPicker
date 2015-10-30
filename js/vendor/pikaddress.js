@@ -231,13 +231,11 @@
 
 
 		self._onClick = function (e) {
-			console.log('pika click');
-			e.stopPropagation()
-			var $target = $(e.target),
-				$tabs = self.el.find('.pikaddress-tab');
+			e.stopPropagation();  //防止 click 事件冒泡触发 ._onDocumentClick 方法执行
+			var $target = $(e.target);
 
 			// case1: 点击tab
-			if ($target.hasClass('pikaddress-tab') || $target.parent().hasClass(kTAB)) {
+			if ($target.hasClass(kTAB) || $target.parent().hasClass(kTAB)) {
 				var $tab;
 				if ($target.hasClass(kTAB)) {
 					$tab = $target;
@@ -265,36 +263,12 @@
 				if ($tab.hasClass(kTAB_COUNTRY)) {
 					self.switchToTabContent(kTAB_COUNTRY);
 				}
-
 			}
 
 			// case2: 点击district-address
 			if ($target.hasClass(kDOMADDRESS)) {
-				//if ($target.hasClass(kDOMADDRESS__SELECTED)) {
-				//  return;
-				//}
 				var selectedDistrict = $target.attr('data-district');
-				self._o.district = selectedDistrict;
-
-				var isDistrictProvince = selectedDistrict.split('-').length == 1,
-					isDistrictCity = selectedDistrict.split('-').length == 2,
-					isDistrictCountry = selectedDistrict.split('-').length == 3;
-
-				if (isDistrictProvince) {
-					self.switchToTabContent(kTAB_CITY)
-					return;
-				}
-				if (isDistrictCity) {
-					self.switchToTabContent(kTAB_COUNTRY)
-					return;
-				}
-				if (isDistrictCountry) {
-					if (self._o.onSelectDone) {
-						self._o.onSelectDone();
-					}
-					return;
-				}
-
+				self.setDistrict(selectedDistrict);
 			}
 
 
@@ -424,6 +398,29 @@
 			$(document).off('click', this._onDocumentClick);
 
 		},
+
+		setDistrict: function(district){
+			this._o.district = district;
+
+			var isDistrictProvince = district.split('-').length == 1,
+				isDistrictCity = district.split('-').length == 2,
+				isDistrictCountry = district.split('-').length == 3;
+
+			if (isDistrictProvince) {
+				this.switchToTabContent(kTAB_CITY)
+				return;
+			}
+			if (isDistrictCity) {
+				this.switchToTabContent(kTAB_COUNTRY)
+				return;
+			}
+			if (isDistrictCountry) {
+				if (this._o.onSelectDone) {
+					this._o.onSelectDone();
+				}
+				return;
+			}
+		}
 	}
 	return Pikaddress;
 }))
