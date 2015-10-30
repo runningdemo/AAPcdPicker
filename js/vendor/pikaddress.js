@@ -249,10 +249,8 @@
 		};
 
 		self._onDocumentClick = function (e) {
-			console.log('body click');
 			var pEl = e.target;
 			if (!pEl) return;
-			console.log(pEl);
 
 			if (pEl === opts.field) {
 				return;
@@ -261,7 +259,7 @@
 		}
 
 		self._onFieldClick = function (e) {
-			e.stopPropagation();
+			e.stopPropagation(); //防止 click 事件冒泡触发 ._onDocumentClick 方法执行
 			if (self._o.onFieldFocus) {
 				self._o.onFieldFocus();
 			}
