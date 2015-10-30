@@ -283,7 +283,8 @@
 		},
 
 		//
-		switchToTabContent: function (tabname) {
+		setSelectedTab: function (tabname) {
+			this._o.selectedTabname = tabname;
 			var $tabs = this.el.find('.pikaddress-tab'),
 				$tab = this.el.find('.' + tabname);
 			$tabs.removeClass('pikaddress-tab--selected');
@@ -320,7 +321,7 @@
 			if ($selectedTab.hasClass(kTAB_COUNTRY)) {
 				selectedTabName = kTAB_COUNTRY;
 			}
-			this.switchToTabContent(selectedTabName)
+			this.setSelectedTab(selectedTabName)
 
 		},
 
@@ -378,11 +379,11 @@
 				isDistrictCountry = district.split('-').length == 3;
 
 			if (isDistrictProvince) {
-				this.switchToTabContent(kTAB_CITY)
+				this.setSelectedTab(kTAB_CITY)
 				return;
 			}
 			if (isDistrictCity) {
-				this.switchToTabContent(kTAB_COUNTRY)
+				this.setSelectedTab(kTAB_COUNTRY)
 				return;
 			}
 			if (isDistrictCountry) {
@@ -407,19 +408,19 @@
 
 			// 常用
 			if ($tab.hasClass(kTAB_OFTEN)) {
-				this.switchToTabContent(kTAB_OFTEN);
+				this.setSelectedTab(kTAB_OFTEN);
 			}
 			// 省
 			if ($tab.hasClass(kTAB_PROVINCE)) {
-				this.switchToTabContent(kTAB_PROVINCE);
+				this.setSelectedTab(kTAB_PROVINCE);
 			}
 			// 市
 			if ($tab.hasClass(kTAB_CITY)) {
-				this.switchToTabContent(kTAB_CITY);
+				this.setSelectedTab(kTAB_CITY);
 			}
 			// 区县
 			if ($tab.hasClass(kTAB_COUNTRY)) {
-				this.switchToTabContent(kTAB_COUNTRY);
+				this.setSelectedTab(kTAB_COUNTRY);
 			}
 
 		}
