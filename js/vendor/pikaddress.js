@@ -272,7 +272,6 @@
 		self.el.on('click', self._onClick)
 		opts.$field.on('click', self._onFieldClick);
 		self.el.appendTo($(document.body));
-		self.hide();
 	}
 
 
