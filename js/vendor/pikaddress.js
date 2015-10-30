@@ -236,33 +236,7 @@
 
 			// case1: 点击tab
 			if ($target.hasClass(kTAB) || $target.parent().hasClass(kTAB)) {
-				var $tab;
-				if ($target.hasClass(kTAB)) {
-					$tab = $target;
-				} else if ($target.parent().hasClass(kTAB)) {
-					$tab = $target.parent();
-				}
-				if ($tab.hasClass('pikaddress-tab--selected')) {
-					return;
-				}
-
-
-				// 常用
-				if ($tab.hasClass(kTAB_OFTEN)) {
-					self.switchToTabContent(kTAB_OFTEN);
-				}
-				// 省
-				if ($tab.hasClass(kTAB_PROVINCE)) {
-					self.switchToTabContent(kTAB_PROVINCE);
-				}
-				// 市
-				if ($tab.hasClass(kTAB_CITY)) {
-					self.switchToTabContent(kTAB_CITY);
-				}
-				// 区县
-				if ($tab.hasClass(kTAB_COUNTRY)) {
-					self.switchToTabContent(kTAB_COUNTRY);
-				}
+				self.clickTab($target);
 			}
 
 			// case2: 点击district-address
@@ -420,6 +394,37 @@
 				}
 				return;
 			}
+		},
+
+		clickTab: function($target) {
+			var $tab;
+			if ($target.hasClass(kTAB)) {
+				$tab = $target;
+			} else if ($target.parent().hasClass(kTAB)) {
+				$tab = $target.parent();
+			}
+			if ($tab.hasClass('pikaddress-tab--selected')) {
+				return;
+			}
+
+
+			// 常用
+			if ($tab.hasClass(kTAB_OFTEN)) {
+				this.switchToTabContent(kTAB_OFTEN);
+			}
+			// 省
+			if ($tab.hasClass(kTAB_PROVINCE)) {
+				this.switchToTabContent(kTAB_PROVINCE);
+			}
+			// 市
+			if ($tab.hasClass(kTAB_CITY)) {
+				this.switchToTabContent(kTAB_CITY);
+			}
+			// 区县
+			if ($tab.hasClass(kTAB_COUNTRY)) {
+				this.switchToTabContent(kTAB_COUNTRY);
+			}
+
 		}
 	}
 	return Pikaddress;
