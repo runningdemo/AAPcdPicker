@@ -230,7 +230,7 @@
 			opts = this.config(options);
 
 
-		self._onMousedown = function (e) {
+		self._onClick = function (e) {
 			console.log('pika click');
 			e.stopPropagation()
 			var $target = $(e.target),
@@ -300,7 +300,7 @@
 
 		};
 
-		self._onClick = function (e) {
+		self._onDocumentClick = function (e) {
 			console.log('body click');
 			var pEl = e.target;
 			if (!pEl) return;
@@ -323,7 +323,7 @@
 		self.el = $('<div />', {
 			class: 'pikaddress'
 		});
-		self.el.on('click', self._onMousedown);
+		self.el.on('click', self._onClick)
 		opts.$field.on('click', self._onFieldClick);
 		self.el.appendTo($(document.body));
 		self.hide();
@@ -411,7 +411,7 @@
 				return;
 			}
 			this._v = true;
-			$(document).on('click', this._onClick);
+			$(document).on('click', this._onDocumentClick);
 			this.draw();
 			this.adjustPosition();
 			this.el.show();
@@ -421,7 +421,7 @@
 			console.log('hide');
 			this._v = false;
 			this.el.hide();
-			$(document).off('click', this._onClick);
+			$(document).off('click', this._onDocumentClick);
 
 		},
 	}
