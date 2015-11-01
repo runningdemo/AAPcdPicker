@@ -231,6 +231,7 @@
 
 
 		self._onClick = function (e) {
+			console.log('mousedown event');
 			e.stopPropagation();  //防止 click 事件冒泡触发 ._onDocumentClick 方法执行
 			var $target = $(e.target);
 
@@ -243,8 +244,10 @@
 			if ($target.hasClass(kDOMADDRESS)) {
 				var selectedDistrict = $target.attr('data-district');
 				self.setDistrict(selectedDistrict);
-			}
+			};
 
+			console.log('_c ture');
+			self._c = true; // 用这个变量来阻止 blur 事件触发的函数隐藏该组件
 
 		};
 
@@ -255,6 +258,13 @@
 			if (pEl === opts.field) {
 				return;
 			}
+
+			do {
+				if ($(pEl).hasClass('pikaddress')) {
+					return;
+				}
+			}
+			while ((pEl = pEl.parentNode));
 			self.hide();
 		}
 
@@ -268,19 +278,27 @@
 		}
 
 		self._onFieldBlur = function() {
+			console.log('blur event');
 			if(self._o.onFieldBlur) {
 				self._o.onFieldBlur();
 			}
+
+			if(!self._c) {
+				console.log('blur : hide')
+				self.hide();
+			}
+			console.log('blur : no hide')
+			self._c = false;
 		}
 
 		self.el = $('<div />', {
 			class: 'pikaddress'
 		});
-		self.el.on('click', self._onClick)
+		self.el.appendTo($(document.body));
+		self.el.on('mousedown', self._onClick);
 		opts.$field.on('click', self._onFieldClick);
 		opts.$field.on('focus', self._onFieldClick);
 		opts.$field.on('blur', self._onFieldBlur);
-		self.el.appendTo($(document.body));
 	}
 
 

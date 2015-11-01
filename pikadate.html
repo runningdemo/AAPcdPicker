@@ -39,10 +39,10 @@
                             $('#input1').val(pikaddress1._o.district);
                             console.log(pikaddress1._o.district);
                             pikaddress1.hide();
-                        },
-                        onFieldBlur:function() {
-                            pikaddress1.hide();
                         }
+//                        onFieldBlur:function() {
+//                            pikaddress1.hide();
+//                        }
                     });
                     pikaddress2 = new Pikaddress({
                         field: document.getElementById('input2'),
@@ -51,10 +51,10 @@
                         onSelectDone: function () {
                             $('#input').val(pikaddress2._o.district);
                             pikaddress2.hide();
-                        },
-                        onFieldBlur:function(){
-                            pikaddress2.hide();
                         }
+//                        onFieldBlur:function(){
+//                            pikaddress2.hide();
+//                        }
                     });
 
                 });
