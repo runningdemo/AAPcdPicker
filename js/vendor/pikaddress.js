@@ -263,6 +263,7 @@
 			if (self._o.onFieldFocus) {
 				self._o.onFieldFocus();
 			}
+			if(self._v == true) return;
 			self.show();
 		}
 
@@ -271,6 +272,7 @@
 		});
 		self.el.on('click', self._onClick)
 		opts.$field.on('click', self._onFieldClick);
+		opts.$field.on('focus', self._onFieldClick);
 		self.el.appendTo($(document.body));
 	}
 
