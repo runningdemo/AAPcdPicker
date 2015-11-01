@@ -267,12 +267,19 @@
 			self.show();
 		}
 
+		self._onFieldBlur = function() {
+			if(self._o.onFieldBlur) {
+				self._o.onFieldBlur();
+			}
+		}
+
 		self.el = $('<div />', {
 			class: 'pikaddress'
 		});
 		self.el.on('click', self._onClick)
 		opts.$field.on('click', self._onFieldClick);
 		opts.$field.on('focus', self._onFieldClick);
+		opts.$field.on('blur', self._onFieldBlur);
 		self.el.appendTo($(document.body));
 	}
 

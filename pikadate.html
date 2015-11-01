@@ -40,10 +40,8 @@
                             console.log(pikaddress1._o.district);
                             pikaddress1.hide();
                         },
-                        onFieldFocus:function(){
-                            if(pikaddress2) {
-                                pikaddress2.hide();
-                            }
+                        onFieldBlur:function() {
+                            pikaddress1.hide();
                         }
                     });
                     pikaddress2 = new Pikaddress({
@@ -54,10 +52,8 @@
                             $('#input').val(pikaddress2._o.district);
                             pikaddress2.hide();
                         },
-                        onFieldFocus:function(){
-                            if(pikaddress1) {
-                                pikaddress1.hide();
-                            }
+                        onFieldBlur:function(){
+                            pikaddress2.hide();
                         }
                     });
 
