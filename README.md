@@ -4,4 +4,6 @@
 
 名字中的 Pcd 分别代表 Province, City, District. 
 
+![alt preview](/preview.png?raw=true "preview")
+
 [查看Demo →](https://liaa.github.io/AAPcdPicker/)
