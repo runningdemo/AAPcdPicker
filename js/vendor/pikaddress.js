@@ -231,7 +231,6 @@
 
 
 		self._onClick = function (e) {
-			console.log('mousedown event');
 			e.stopPropagation();  //防止 click 事件冒泡触发 ._onDocumentClick 方法执行
 			var $target = $(e.target);
 
@@ -246,7 +245,6 @@
 				self.setDistrict(selectedDistrict);
 			};
 
-			console.log('_c ture');
 			self._c = true; // 用这个变量来阻止 blur 事件触发的函数隐藏该组件
 
 		};
@@ -278,16 +276,13 @@
 		}
 
 		self._onFieldBlur = function() {
-			console.log('blur event');
 			if(self._o.onFieldBlur) {
 				self._o.onFieldBlur();
 			}
 
 			if(!self._c) {
-				console.log('blur : hide')
 				self.hide();
 			}
-			console.log('blur : no hide')
 			self._c = false;
 		}
 
@@ -295,6 +290,7 @@
 			class: 'pikaddress'
 		});
 		self.el.appendTo($(document.body));
+    self.el.hide();
 		self.el.on('mousedown', self._onClick);
 		opts.$field.on('click', self._onFieldClick);
 		opts.$field.on('focus', self._onFieldClick);
@@ -371,11 +367,11 @@
 			var $field = $(this._o.field),
 				$el = this.el;
 			var x = $field.position().left,
-				y = $field.position().top + $field.height();
+				y = $field.position().top + $field.outerHeight();
 
 			$el.css({
 				position: 'absolute',
-				top: y + 1,
+				top: y ,
 				left: x,
 			});
 		},
@@ -391,7 +387,6 @@
 
 		},
 		hide: function () {
-			console.log('hide');
 			this._v = false;
 			this.el.hide();
 			$(document).off('click', this._onDocumentClick);
