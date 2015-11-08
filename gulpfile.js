@@ -5,7 +5,7 @@ gulp.task('browser', function(){
 	browserSync.init(null, {
 		server: {
 			baseDir: './',
-			index: "./pikadate.html",
+			index: "./index.html",
 		}
 	});
 })
