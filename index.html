@@ -41,13 +41,13 @@
         $.ajax('data/distric.json')
                 .done(function (data) {
                     var districs = data;
-                    pikaddress1 = new Pikaddress({
+                    aaPcdPicker1 = new AAPcdPicker({
                         field: document.getElementById('input1'),
                         districtsData: districs,
                         districtsOften: ["北京-北京", "江苏-南京", "天津-天津", "江苏-常州"],
                         onSelectDone: function () {
-                            $('#input1').val(pikaddress1._o.district);
-                            pikaddress1.hide();
+                            $('#input1').val(aaPcdPicker1._o.district);
+                            aaPcdPicker1.hide();
                         }
                     });
 

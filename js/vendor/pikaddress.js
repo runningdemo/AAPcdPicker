@@ -10,7 +10,7 @@
 			return factory();
 		});
 	} else {
-		root.Pikaddress = factory();
+		root.AAPcdPicker = factory();
 	}
 }(this, function () {
 
@@ -223,9 +223,9 @@
 	}
 
 	/*
-	 * Pikaddress constructor
+	 * AAPcdPicker constructor
 	 */
-	Pikaddress = function (options) {
+	 AAPcdPicker = function (options) {
 		var self = this,
 			opts = this.config(options);
 
@@ -298,7 +298,7 @@
 	}
 
 
-	Pikaddress.prototype = {
+	AAPcdPicker.prototype = {
 		config: function (options) {
 			this._o = $.extend({}, defaults, options);
 			this._o.$field = $(this._o.field);
@@ -447,7 +447,7 @@
 
 		}
 	}
-	return Pikaddress;
+	return AAPcdPicker;
 }))
 
 
