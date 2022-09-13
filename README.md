@@ -6,7 +6,7 @@
 
 ![alt preview](/preview.png?raw=true "preview")
 
-[查看Demo →](https://liaa.github.io/AAPcdPicker/)
+[查看Demo →](https://runningdemo.github.io/AAPcdPicker/)
 
 ### 其他信息
 
